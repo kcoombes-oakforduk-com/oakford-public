@@ -19,7 +19,7 @@ yes | dnf install -y zabbix-proxy-sqlite3 zabbix-selinux-policy
 setsebool -P httpd_can_connect_zabbix on
 
 echo "Updating conf file"
-sed -i -e "s/^\(Server=*\).*/\1185.73.67.34/" -e "s/^\(DBName=*\).*/\1\/tmp\/zabbix_proxy/" /etc/zabbix/zabbix_proxy.conf
+sed -i -e "s/^\(Server=*\).*/\1185.73.67.34/" -e "s/^\(DBName=*\).*/\1\/tmp\/zabbix_proxy/" -e "s/^\(Hostname=*\).*/\1$HOSTNAME/" /etc/zabbix/zabbix_proxy.conf
 
 if grep "^TLSConnect" -i /etc/zabbix/zabbix_proxy.conf
 then 
