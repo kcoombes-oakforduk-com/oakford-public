@@ -6,6 +6,7 @@ echo $key
 read -p "Confirm this is correct. Continue? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 
 echo "Downloading and installing Oakford CA Cert"
+yes | yum install wget --nogpgcheck
 wget https://oakfordhelp.co.uk/oakford-ca.crt
 yes | cp oakford-ca.crt /etc/pki/ca-trust/source/anchors/
 update-ca-trust
