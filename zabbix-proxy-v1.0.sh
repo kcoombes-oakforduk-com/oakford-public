@@ -5,6 +5,7 @@
 # ./zabbix-proxy-v1.0.sh
 #
 # Generate a key: powershell -command '$rndbytes = New-Object byte[] 16;(New-Object System.Security.Cryptography.RNGCryptoServiceProvider).GetBytes($rndbytes);($rndbytes |ForEach-Object ToString X2) -join {}'
+# Generate a key: openssl rand -hex 32
 #
 
 read -p "Enter key: " key
