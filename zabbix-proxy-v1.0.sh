@@ -5,7 +5,7 @@
 # ./zabbix-proxy-v1.0.sh
 #
 # Generate a key: powershell -command '$rndbytes = New-Object byte[] 16;(New-Object System.Security.Cryptography.RNGCryptoServiceProvider).GetBytes($rndbytes);($rndbytes |ForEach-Object ToString X2) -join {}'
-# Generate a key: openssl rand -hex 32
+# Generate a key: openssl rand -hex 64
 #
 
 read -p "Enter key: " key
@@ -36,9 +36,9 @@ fi
 
 if grep "^TLSPSKIdentity" -i /etc/zabbix/zabbix_proxy.conf
 then 
-   sed -i "s/^\(TLSPSKIdentity=*\).*/\1custom/" /etc/zabbix/zabbix_proxy.conf;
+   sed -i "s/^\(TLSPSKIdentity=*\).*/\1$HOSTNAME/" /etc/zabbix/zabbix_proxy.conf;
 else
-   echo "TLSPSKIdentity=custom" >> /etc/zabbix/zabbix_proxy.conf;
+   echo "TLSPSKIdentity=$HOSTNAME" >> /etc/zabbix/zabbix_proxy.conf;
 fi
 
 if grep "^TLSPSKFile" -i /etc/zabbix/zabbix_proxy.conf
