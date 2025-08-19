@@ -18,8 +18,8 @@ wget https://oakfordhelp.co.uk/oakford-ca.crt
 yes | cp oakford-ca.crt /etc/pki/ca-trust/source/anchors/
 update-ca-trust
 
-echo "Downloading and installing Zabbix Proxy, v6.4, rhel9, sqlite3"
-rpm -Uvh https://repo.zabbix.com/zabbix/6.4/rhel/9/x86_64/zabbix-release-latest-6.4.el9.noarch.rpm
+echo "Downloading and installing Zabbix Proxy, v7.0, rhel9, sqlite3"
+rpm -Uvh https://repo.zabbix.com/zabbix/7.0/rhel/9/x86_64/zabbix-release-latest.el9.noarch.rpm
 dnf clean all
 yes | dnf install -y zabbix-proxy-sqlite3 zabbix-selinux-policy
 setsebool -P httpd_can_connect_zabbix on
